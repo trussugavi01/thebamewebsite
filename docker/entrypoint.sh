@@ -4,11 +4,22 @@ set -e
 # Create supervisor log directory
 mkdir -p /var/log/supervisor
 
+# Ensure .env file exists (Laravel requires it)
+if [ ! -f /var/www/html/.env ]; then
+    touch /var/www/html/.env
+fi
+
+# Generate application key if not set (do this first, before DB check)
+if [ -z "$APP_KEY" ]; then
+    echo "Generating application key..."
+    php artisan key:generate --force || echo "Key generation failed, continuing..."
+fi
+
 # Wait for database to be ready (if DB_HOST is set)
 db_ready=false
 if [ -n "$DB_HOST" ]; then
-    echo "Waiting for database connection..."
-    max_attempts=15
+    echo "Waiting for database connection to $DB_HOST..."
+    max_attempts=20
     attempt=0
     while [ $attempt -lt $max_attempts ]; do
         if php -r "try { new PDO('pgsql:host=' . getenv('DB_HOST') . ';port=' . (getenv('DB_PORT') ?: '5432') . ';dbname=' . getenv('DB_DATABASE'), getenv('DB_USERNAME'), getenv('DB_PASSWORD')); echo 'connected'; exit(0); } catch (Exception \$e) { echo \$e->getMessage(); exit(1); }" 2>&1; then
@@ -21,14 +32,9 @@ if [ -n "$DB_HOST" ]; then
         sleep 3
     done
     if [ "$db_ready" = false ]; then
-        echo "WARNING: Could not connect to database after $max_attempts attempts. Starting anyway..."
+        echo "WARNING: Could not connect to database after $max_attempts attempts."
+        echo "The app will start but database features won't work until connection is established."
     fi
-fi
-
-# Generate application key if not set
-if [ -z "$APP_KEY" ]; then
-    echo "Generating application key..."
-    php artisan key:generate --force || echo "Key generation failed, continuing..."
 fi
 
 # Run database migrations (only if database is ready)
