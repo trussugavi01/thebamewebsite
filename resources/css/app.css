@@ -1,0 +1,96 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+/* ======================================================
+   GOOGLE FONT IMPORTS
+   ====================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;600;700&family=Bebas+Neue&display=swap');
+
+/* ======================================================
+   CUSTOM FONT (AISLE)
+   ====================================================== */
+@font-face {
+  font-family: 'Aisle';
+  src: url('/fonts/Aisle.woff2') format('woff2'),
+       url('/fonts/Aisle.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ======================================================
+   TAILWIND CSS 4.0 THEME CONFIGURATION
+   ====================================================== */
+@theme {
+    /* Brand Colours */
+    --color-primary: #B24F93;
+    --color-secondary: #00B6A1;
+    --color-supporting: #215798;
+    --color-brand-black: #000000;
+    
+    /* Purple scale (using primary brand color) */
+    --color-purple-50: #faf5ff;
+    --color-purple-100: #f3e8ff;
+    --color-purple-200: #e9d5ff;
+    --color-purple-300: #d8b4fe;
+    --color-purple-400: #c084fc;
+    --color-purple-500: #B24F93;
+    --color-purple-600: #B24F93;
+    --color-purple-700: #8e3f76;
+    --color-purple-800: #6b2f59;
+    --color-purple-900: #481f3c;
+    
+    /* Teal scale (using secondary brand color) */
+    --color-teal-50: #f0fdfa;
+    --color-teal-100: #ccfbf1;
+    --color-teal-200: #99f6e4;
+    --color-teal-300: #5eead4;
+    --color-teal-400: #2dd4bf;
+    --color-teal-500: #00B6A1;
+    --color-teal-600: #00B6A1;
+    --color-teal-700: #009281;
+    --color-teal-800: #006e61;
+    --color-teal-900: #004a41;
+    
+    /* Blue scale (using supporting brand color) */
+    --color-blue-50: #eff6ff;
+    --color-blue-100: #dbeafe;
+    --color-blue-200: #bfdbfe;
+    --color-blue-300: #93c5fd;
+    --color-blue-400: #60a5fa;
+    --color-blue-500: #3b82f6;
+    --color-blue-600: #215798;
+    --color-blue-700: #215798;
+    --color-blue-800: #1a467a;
+    --color-blue-900: #14355c;
+
+    /* Typography */
+    --font-sans: 'Lato', 'Montserrat', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Bebas Neue', ui-sans-serif, system-ui, sans-serif;
+    --font-accent: 'Aisle', ui-serif, Georgia, serif;
+}
+
+/* ======================================================
+   BASE STYLES
+   ====================================================== */
+body {
+  font-family: 'Lato', ui-sans-serif, system-ui, sans-serif;
+  font-size: 18px;
+  color: #000000;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-accent {
+  font-family: var(--font-accent);
+}

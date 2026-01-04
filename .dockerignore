@@ -1,0 +1,57 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules
+
+# Testing
+tests
+phpunit.xml
+.phpunit.result.cache
+
+# Development files
+.env
+.env.local
+.env.*.local
+.env.production
+.env.docker
+
+# Documentation
+README.md
+DEPLOYMENT.md
+*.md
+
+# Docker (avoid recursive copy)
+docker-compose*.yml
+
+# Laravel development
+storage/logs/*
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*
+!storage/logs/.gitkeep
+!storage/framework/cache/.gitkeep
+!storage/framework/sessions/.gitkeep
+!storage/framework/views/.gitkeep
+
+# SQLite database (we're using PostgreSQL)
+database/*.sqlite
+database/database.sqlite
+
+# Misc
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
